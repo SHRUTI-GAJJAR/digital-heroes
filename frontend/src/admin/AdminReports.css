@@ -168,9 +168,8 @@
   box-sizing: border-box;
 }
 
-.reports-pair .report-section {
-  height: 100%;
-  box-sizing: border-box;
+.reports-pair > .report-section {
+  margin-top: 0 !important;
 }
 
 
