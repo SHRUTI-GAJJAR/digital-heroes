@@ -23,6 +23,22 @@ const createSubscriptionDonation = async (
     return null;
   }
 
+  const { data: existingDonation, error: existingDonationError } =
+    await supabase
+      .from("donations")
+      .select("*")
+      .eq("subscription_id", subscription.id)
+      .eq("donation_type", "subscription")
+      .maybeSingle();
+
+  if (existingDonationError) {
+    throw existingDonationError;
+  }
+
+  if (existingDonation) {
+    return existingDonation;
+  }
+
   const donationAmount =
     calculateSubscriptionDonation(
       subscription.amount,
@@ -45,6 +61,22 @@ const createSubscriptionDonation = async (
       .single();
 
   if (error) {
+    if (error.code === "23505") {
+      const { data: duplicateDonation, error: duplicateError } =
+        await supabase
+          .from("donations")
+          .select("*")
+          .eq("subscription_id", subscription.id)
+          .eq("donation_type", "subscription")
+          .maybeSingle();
+
+      if (duplicateError) {
+        throw duplicateError;
+      }
+
+      return duplicateDonation;
+    }
+
     throw error;
   }
 

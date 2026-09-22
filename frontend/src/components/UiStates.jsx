@@ -1,6 +1,6 @@
 import { AlertCircle, Inbox, LoaderCircle } from "lucide-react";
 
 export function InlineLoading({ label = "Loading…" }) { return <span className="inline-loading"><LoaderCircle size={16} /> {label}</span>; }
-export function ErrorState({ message = "Something went wrong. Please try again.", onRetry }) { return <div className="ui-state error-state"><AlertCircle size={28} /><p>{message}</p>{onRetry && <button type="button" onClick={onRetry}>Retry</button>}</div>; }
+export function ErrorState({ message = "We couldn’t load this information right now. Please try again.", onRetry }) { return <div className="ui-state error-state"><AlertCircle size={28} /><p>{message}</p>{onRetry && <button type="button" onClick={onRetry}>Try again</button>}</div>; }
 export function EmptyState({ title = "Nothing here yet", message = "When there is something to show, it will appear here." }) { return <div className="ui-state"><Inbox size={30} /><h3>{title}</h3><p>{message}</p></div>; }
 export function ConfirmationDialog({ open, title = "Are you sure?", message, confirmLabel = "Confirm", onConfirm, onCancel }) { if (!open) return null; return <div className="dialog-backdrop" role="presentation"><section className="confirmation-dialog" role="dialog" aria-modal="true" aria-labelledby="confirmation-title"><h2 id="confirmation-title">{title}</h2><p>{message}</p><div><button className="dialog-cancel" onClick={onCancel}>Cancel</button><button className="dialog-confirm" onClick={onConfirm}>{confirmLabel}</button></div></section></div>; }

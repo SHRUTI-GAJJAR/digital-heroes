@@ -1,9 +1,5 @@
 const supabase = require("../config/supabase");
 
-const {
-  createSubscriptionDonation
-} = require("../services/donationService");
-
 // GET MY SUBSCRIPTIONS
 const getMySubscriptions = async (req, res) => {
   try {
@@ -239,7 +235,7 @@ const createSubscription = async (req, res) => {
         plan_type,
         amount: subscriptionAmount,
         currency,
-        status: "active",
+        status: "inactive",
         charity_id,
         charity_percentage: percentage,
         renewal_date: renewal_date || null
@@ -260,12 +256,9 @@ const createSubscription = async (req, res) => {
       throw error;
     }
 
-    // Create charity contribution
-    await createSubscriptionDonation(subscription);
-
     return res.status(201).json({
       success: true,
-      message: "Subscription created successfully",
+      message: "Subscription saved. Payment is required before activation.",
       subscription
     });
   } catch (error) {

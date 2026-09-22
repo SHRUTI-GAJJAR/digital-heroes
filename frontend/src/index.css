@@ -87,6 +87,20 @@ button:disabled {
   cursor: not-allowed;
 }
 
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+input,
+select,
+textarea {
+  min-width: 0;
+}
+
 :focus-visible {
   outline: 3px solid rgba(99, 141, 33, 0.45);
   outline-offset: 3px;
@@ -137,6 +151,39 @@ a {
 .status-badge.rejected {
   background: #fbeaea;
   color: #a14040;
+}
+
+.form-error,
+.form-success,
+.notice,
+.page-error {
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.form-error,
+.page-error {
+  border: 1px solid #efcaca;
+  background: #fff7f7;
+  color: #9d3e3e;
+}
+
+.form-success {
+  border: 1px solid #cbe6d3;
+  background: #f4fbf5;
+  color: #287a52;
+}
+
+.notice {
+  border: 1px solid #e5e9c7;
+  background: #fbfced;
+  color: #6e741f;
+}
+
+@media (max-width: 900px) {
+  .public-page { padding-top: 56px; }
 }
 
 @media (max-width: 600px) { .public-page { width: min(100% - 28px, 1180px); padding: 55px 0; } }

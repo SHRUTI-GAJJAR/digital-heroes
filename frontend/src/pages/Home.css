@@ -162,7 +162,7 @@
   object-fit: cover;
 }
 
-.impact-card {
+.hero-image-card .impact-card {
   position: absolute;
   z-index: 2;
   left: 24px;
@@ -190,16 +190,16 @@
   background: var(--accent);
 }
 
-.impact-card strong,
-.impact-card span {
+.hero-image-card .impact-card strong,
+.hero-image-card .impact-card span {
   display: block;
 }
 
-.impact-card strong {
+.hero-image-card .impact-card strong {
   font-size: 13px;
 }
 
-.impact-card span {
+.hero-image-card .impact-card span {
   margin-top: 3px;
   color: rgba(255, 255, 255, 0.68);
   font-size: 11px;
@@ -355,7 +355,7 @@
 ========================= */
 
 .charity-section {
-  padding: 110px 0;
+  padding: 110px 0 72px;
   background: var(--background);
 }
 
@@ -549,7 +549,7 @@
 ========================= */
 
 .final-cta {
-  padding: 115px 20px;
+  padding: 72px 20px 40px;
   background: #eef4e5;
 }
 
@@ -683,16 +683,19 @@
     display: none;
   }
 
-  .impact-card {
+  .hero-image-card .impact-card {
     left: 14px;
     right: 14px;
     bottom: 14px;
   }
 
   .how-section,
-  .charity-section,
   .draw-section {
     padding: 72px 0;
+  }
+
+  .charity-section {
+    padding: 72px 0 28px;
   }
 
   .section-heading h2,

@@ -4,12 +4,13 @@ const {
   getMySubscriptions,
   getSubscriptionById,
   getAllSubscriptions,
-  createSubscription,
   updateSubscription,
   cancelSubscription,
   updateSubscriptionStatus,
   deleteSubscription
 } = require("../controllers/subscriptionController");
+
+const { initiatePayment } = require("../controllers/paymentController");
 
 const protect = require("../middleware/authMiddleware");
 const adminOnly = require("../middleware/adminMiddleware");
@@ -47,7 +48,7 @@ router.get(
 router.post(
   "/",
   protect,
-  createSubscription
+  initiatePayment
 );
 
 router.put(
