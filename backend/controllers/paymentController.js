@@ -253,9 +253,14 @@ const initiatePayment = async (req, res) => {
       payment
     });
   } catch (error) {
-    console.error("Initiate PayU payment error:", error);
-    return res.status(500).json({ success: false, message: "Unable to prepare payment" });
-  }
+  console.error("INITIATE PAYU ERROR:", error);
+
+  return res.status(500).json({
+    success: false,
+    message: error?.message || String(error),
+    error: error?.stack || null
+  });
+}
 };
 
 const processCallback = async (req, res, callbackType) => {
