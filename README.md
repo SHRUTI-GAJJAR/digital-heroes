@@ -7,7 +7,7 @@ subscribers can record their Stableford scores, participate in monthly
 number draws, support a chosen charity, and potentially earn a share of
 the monthly prize pool.
 
-> **Live Demo:** https://digital-heroes-ashy-five.vercel.app/\
+> **Live Demo:** https://digital-heroes-ashy-five.vercel.app/
 > **Backend API:** https://digital-heroes-backend-wylf.onrender.com\
 > **Repository:**
 > https://github.com/SHRUTI-GAJJAR/digital-heroes/tree/digital-hero
