@@ -441,13 +441,12 @@ const cancelSubscription = async (req, res) => {
       });
     }
 
-    if (existingSubscription.status === "cancelled") {
-      return res.status(400).json({
-        success: false,
-        message: "Subscription is already cancelled"
-      });
-    }
-
+    if (existingSubscription.status !== "active") {
+  return res.status(400).json({
+    success: false,
+    message: "Only an active subscription can be cancelled"
+  });
+}
     const { data: subscription, error } = await supabase
       .from("subscriptions")
       .update({
