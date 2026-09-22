@@ -1,710 +1,552 @@
-# Digital Heroes
+# ⛳ Digital Heroes
 
-Digital Heroes is a charity-first, subscription-based golf rewards platform that combines golf performance, monthly prize draws, and charitable giving.
+### **Play Golf. Make an Impact. Share the Reward.**
 
-Members can subscribe to a plan, select a charity, contribute a percentage of their subscription fee, submit Stableford golf scores, participate in monthly draws, and track winnings. Administrators can manage users, subscriptions, charities, draws, winners, and reports.
+Digital Heroes is a charity-first golf rewards platform where active
+subscribers can record their Stableford scores, participate in monthly
+number draws, support a chosen charity, and potentially earn a share of
+the monthly prize pool.
 
-## Features
+> **Live Demo:** https://digital-heroes-ashy-five.vercel.app/\
+> **Backend API:** https://digital-heroes-backend-wylf.onrender.com\
+> **Repository:**
+> https://github.com/SHRUTI-GAJJAR/digital-heroes/tree/digital-hero
 
-### Public
-- Charity-first landing page
-- Charity directory
-- Charity search and filtering
-- Featured charities
-- Charity detail pages
-- Responsive design
+------------------------------------------------------------------------
 
-### Members
-- Registration and login
-- JWT authentication
-- Monthly and yearly subscription plans
-- Charity selection
-- Minimum 10% charity contribution
-- Stableford golf score management
-- Latest five scores
-- Monthly draw participation
-- Winner results
-- Winner proof submission
-- Donation/contribution history
-- Subscription status
+## ✨ Overview
 
-### Admin
-- Admin dashboard
-- User management
-- Charity CRUD
-- Featured/active charity controls
-- Draw creation and management
-- Draw simulation and publication
-- Winner management
-- Winner proof verification
-- Reports and statistics
+Digital Heroes combines golf performance, monthly rewards,
+subscriptions, and charitable giving into one web application.
 
-### Payments
-- PayU TEST mode integration
-- Server-side SHA-512 payment hashing
-- Payment response validation
-- PayU transaction verification
-- Payment-gated subscription activation
-- Idempotent charity contribution creation
-- Hosted payment checkout
-- Failed/cancelled payments do not activate subscriptions
+The platform provides three main experiences:
 
-> Automatic recurring subscription mandate billing is not currently implemented. The current payment flow is a verified one-time TEST payment for subscription activation.
+-   🌱 **Public experience** --- discover the concept, charities, and
+    monthly draw mechanics.
+-   ⛳ **Member experience** --- subscribe, select a charity, manage
+    Stableford scores, participate in draws, view winnings, and submit
+    winner proof.
+-   🛡️ **Admin experience** --- manage members, charities, draws,
+    winners, verification, payouts, and reporting.
 
-## Draw System
+The application was designed with a modern, charity-first visual
+direction rather than a traditional golf-club aesthetic.
 
-The monthly draw uses eligible member golf scores and supports three matching tiers:
+------------------------------------------------------------------------
 
-| Match Tier | Prize Pool Share |
-|---|---:|
-| 5 Matches | 40% |
-| 4 Matches | 35% |
-| 3 Matches | 25% |
+## 🎯 Core Features
 
-The 5-match jackpot can include rollover from previous draws. If multiple winners exist in a tier, the applicable prize amount is divided among eligible winners.
+### 👤 Authentication & Members
 
-## Charity Model
+-   Member registration and login
+-   JWT-based authentication
+-   Protected member routes
+-   Admin role support
+-   Member profile and account information
+-   Separate member and admin experiences
 
-Members select a charity and choose a contribution percentage of their subscription fee.
+### ⛳ Golf Scores
 
-The minimum contribution is 10%, and members can contribute more.
+-   Add Stableford scores from **1--45**
+-   Required score date
+-   Edit existing scores
+-   Delete scores
+-   Newest scores displayed first
+-   Only the **latest 5 scores** are retained
 
-Example:
+### 💳 Subscription
 
-```text
-Subscription: ₹499
-Contribution: 10%
-Charity contribution: ₹49.90
+-   Monthly and yearly plan options
+-   Charity selection during subscription
+-   Charity contribution support
+-   Subscription status tracking
+-   Start and renewal information
+-   Cancellation handling
+-   PayU TEST payment integration
+
+> **Payment testing uses PayU sandbox/test mode. No real-money
+> transaction is required for the demonstration.**
+
+### 🎲 Monthly Draws
+
+-   Monthly draw records
+-   Published winning numbers
+-   5 / 4 / 3-number matching tiers
+-   Draw participation for active subscribers
+-   Draw simulation and completion
+-   Prize pool calculation
+-   Jackpot rollover support
+-   Winner generation after draw completion
+
+### 🏆 Winner Verification
+
+-   Winner records generated from completed draws
+-   Match type and prize amount
+-   Winner proof upload
+-   JPG / PNG / WEBP / PDF support
+-   Admin verification
+-   Pending → Approved / Rejected workflow
+-   Pending → Paid payout workflow
+
+### ❤️ Charity
+
+-   Charity directory
+-   Charity categories
+-   Search and filtering
+-   Featured charities
+-   Charity detail pages
+-   Charity website links
+-   Charity contribution tracking
+-   Donation impact reporting
+
+### 📊 Admin Dashboard
+
+Administrators can manage:
+
+-   👥 Members
+-   ❤️ Charities
+-   🎲 Monthly draws
+-   🏆 Winners
+-   📈 Reports
+-   💰 Prize pools
+-   ✅ Winner verification and payout status
+
+### 📱 Responsive UI
+
+The application is designed to work across:
+
+-   Desktop
+-   Tablet
+-   Mobile
+
+The interface includes responsive layouts, modern cards, status badges,
+subtle interactions, and Lucide icons.
+
+------------------------------------------------------------------------
+
+## 🧭 Application Flow
+
+``` text
+Visitor
+   │
+   ├── Explore Digital Heroes
+   ├── Explore Charities
+   └── View Draw Concept
+           │
+           ▼
+       Register / Login
+           │
+           ▼
+     Select Charity + Plan
+           │
+           ▼
+      PayU TEST Payment
+           │
+           ▼
+    Active Subscription
+           │
+           ├── Add Golf Scores
+           ├── View Charity Impact
+           └── Participate in Monthly Draw
+                       │
+                       ▼
+                 Draw Completed
+                       │
+                       ▼
+                 Match Calculation
+                       │
+              ┌────────┴────────┐
+              ▼                 ▼
+          No Winner           Winner
+                                  │
+                                  ▼
+                           Upload Proof
+                                  │
+                                  ▼
+                           Admin Review
+                                  │
+                         ┌────────┴────────┐
+                         ▼                 ▼
+                      Reject            Approve
+                                           │
+                                           ▼
+                                         Paid
 ```
 
-A charity contribution is recorded only after successful payment verification.
+------------------------------------------------------------------------
 
-## Technology Stack
+## 🏅 Prize Matching
+
+The monthly draw supports three matching tiers:
+
+  Match       Reward Tier
+  ----------- --------------------
+  5 numbers   Highest prize tier
+  4 numbers   Middle prize tier
+  3 numbers   Entry prize tier
+
+The prize pool is calculated according to the application rules,
+including rollover handling where applicable.
+
+------------------------------------------------------------------------
+
+## ❤️ Charity Contribution
+
+Digital Heroes is designed around a charity-first model.
+
+Members choose a charity as part of their subscription experience. The
+platform records the resulting charity contribution and exposes the
+impact through member and admin reporting.
+
+Example charity categories include:
+
+-   Children
+-   Education
+-   Environment
+-   Community
+-   Animal Welfare
+-   Healthcare
+
+------------------------------------------------------------------------
+
+## 🛠️ Technology Stack
 
 ### Frontend
-- React
-- Vite
-- React Router
-- Axios
-- Lucide React
-- CSS
+
+-   **React**
+-   **Vite**
+-   **React Router**
+-   **Axios**
+-   **Lucide React**
+-   Modern responsive CSS
 
 ### Backend
-- Node.js
-- Express.js
-- JWT
-- bcryptjs
-- dotenv
-- CORS
-- Multer
+
+-   **Node.js**
+-   **Express.js**
+-   **JWT**
+-   **bcryptjs**
+-   **Multer**
+-   **dotenv**
+-   **CORS**
 
 ### Database
-- Supabase
-- PostgreSQL
 
-### Payment
-- PayU TEST environment
-- SHA-512 hashing
-- Payment verification
-- Webhook/callback handling
+-   **Supabase**
+-   **PostgreSQL**
+-   Row Level Security
+-   Relational data model
+
+### Payments
+
+-   **PayU TEST / Sandbox**
 
 ### Deployment
-- GitHub
-- Vercel
-- Supabase
 
-## Project Structure
+-   **Vercel** --- Frontend
+-   **Render** --- Backend
+-   **Supabase** --- Database
 
-```text
+------------------------------------------------------------------------
+
+## 🗂️ Project Structure
+
+``` text
 digital-heroes/
+│
 ├── backend/
 │   ├── controllers/
 │   ├── middleware/
 │   ├── routes/
 │   ├── services/
 │   ├── utils/
-│   ├── test/
-│   ├── .env
-│   ├── .env.example
-│   ├── package.json
-│   └── server.js
+│   ├── server.js
+│   └── package.json
 │
 ├── frontend/
 │   ├── public/
 │   ├── src/
+│   │   ├── admin/
 │   │   ├── components/
 │   │   ├── context/
-│   │   ├── layouts/
 │   │   ├── pages/
 │   │   ├── services/
 │   │   ├── App.jsx
 │   │   └── main.jsx
-│   ├── .env
-│   ├── .env.example
 │   ├── package.json
 │   └── vite.config.js
 │
-├── .gitignore
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
-## Database
+------------------------------------------------------------------------
 
-Main Supabase/PostgreSQL entities:
+## 🔐 Security & Configuration
 
-```text
-users
-charities
-subscriptions
-scores
-draws
-draw_entries
-winners
-winner_proofs
-donations
-payments
-```
+Sensitive configuration is kept outside the repository using environment
+variables.
 
-Relationship overview:
+Important environment values include:
 
-```text
-User
- ├── Subscriptions
- │    └── Charity
- ├── Scores
- ├── Draw Entries
- ├── Winners
- │    └── Winner Proof
- └── Donations
-
-Subscription
- └── Payment
-```
-
-## Authentication
-
-Authentication uses JSON Web Tokens.
-
-```text
-Login
-  ↓
-Validate credentials
-  ↓
-Generate JWT
-  ↓
-Return token
-  ↓
-Protected API requests use JWT
-```
-
-Passwords are hashed with bcryptjs. Admin routes additionally require administrator authorization.
-
-## API Structure
-
-Base API:
-
-```text
-/api
-```
-
-### Authentication
-
-```text
-POST /api/auth/register
-POST /api/auth/login
-GET  /api/auth/me
-```
-
-### Users
-
-```text
-GET /api/users
-GET /api/users/:id
-```
-
-### Charities
-
-```text
-GET    /api/charities
-GET    /api/charities/:id
-POST   /api/charities
-PUT    /api/charities/:id
-DELETE /api/charities/:id
-```
-
-### Scores
-
-```text
-GET    /api/scores
-POST   /api/scores
-PUT    /api/scores/:id
-DELETE /api/scores/:id
-```
-
-### Subscriptions
-
-```text
-GET  /api/subscriptions
-POST /api/subscriptions
-```
-
-### Payments
-
-```text
-POST /api/payments/payu/initiate
-POST /api/payments/payu/success
-POST /api/payments/payu/failure
-POST /api/payments/payu/cancel
-POST /api/payments/payu/webhook
-```
-
-### Draws
-
-```text
-GET  /api/draws
-GET  /api/draws/:id
-POST /api/draws
-POST /api/draws/:id/simulate
-POST /api/draws/:id/publish
-POST /api/draws/:id/complete
-```
-
-### Draw Entries
-
-```text
-GET /api/draw-entries
-```
-
-### Winners
-
-```text
-GET /api/winners
-GET /api/winners/:id
-POST /api/winners/:id/proof
-PUT /api/winners/:id/verify
-```
-
-### Donations
-
-```text
-GET /api/donations
-```
-
-### Reports
-
-```text
-GET /api/reports/users
-GET /api/reports/subscriptions
-GET /api/reports/donations
-GET /api/reports/draws
-GET /api/reports/winners
-```
-
-## Environment Variables
-
-Create `backend/.env`:
-
-```env
+``` env
 PORT=5000
-
 SUPABASE_URL=your_supabase_url
-SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
-
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 JWT_SECRET=your_jwt_secret
 JWT_EXPIRES_IN=7d
-
 ADMIN_SETUP_KEY=your_admin_setup_key
-FRONTEND_URL=http://localhost:5173
-
-PAYU_MERCHANT_KEY=your_payu_test_key
-PAYU_MERCHANT_SALT=your_payu_test_salt
-PAYU_PAYMENT_URL=https://test.payu.in/_payment
-PAYU_VERIFY_URL=https://test.payu.in/merchant/postservice.php?form=2
-
-PAYU_SUCCESS_URL=https://your-backend-domain/api/payments/payu/success
-PAYU_FAILURE_URL=https://your-backend-domain/api/payments/payu/failure
-PAYU_CANCEL_URL=https://your-backend-domain/api/payments/payu/cancel
-PAYU_WEBHOOK_URL=https://your-backend-domain/api/payments/payu/webhook
+FRONTEND_URL=your_frontend_url
 ```
 
-Create `frontend/.env`:
+Frontend configuration uses:
 
-```env
-VITE_API_URL=http://localhost:5000/api
+``` env
+VITE_API_URL=your_backend_api_url
 ```
 
-Never commit real `.env` files or credentials.
+> **Never commit `.env` files, service-role keys, JWT secrets, payment
+> secrets, or other credentials to GitHub.**
 
-Do not expose:
-- Supabase service role keys
-- JWT secrets
-- PayU merchant salt
-- PayU merchant credentials
-- Admin setup keys
-- Passwords or API keys
+------------------------------------------------------------------------
 
-## Installation
+## 💳 PayU TEST Mode
 
-### Requirements
+The project uses PayU TEST mode for payment demonstration.
 
-- Node.js
-- npm
-- Git
-- Supabase account
-- PayU TEST account for payment testing
+The payment flow is designed so that a subscription becomes active only
+after successful server-side payment confirmation.
 
-### Backend
+### Payment flow
 
-```bash
+``` text
+Subscription Request
+        ↓
+Create Inactive Subscription
+        ↓
+Create Pending Payment
+        ↓
+PayU TEST Checkout
+        ↓
+PayU Callback / Verification
+        ↓
+Server-side Transaction Validation
+        ↓
+Activate Subscription
+        ↓
+Create Charity Contribution
+```
+
+Failed, cancelled, or unverified transactions do not activate the
+subscription.
+
+> **No real-money payment is required for the project demonstration.**
+
+------------------------------------------------------------------------
+
+## 🧪 Tested Functionality
+
+The following major flows were tested during development:
+
+-   [x] Registration
+-   [x] Login
+-   [x] Protected routes
+-   [x] Admin access
+-   [x] Charity browsing
+-   [x] Charity selection
+-   [x] Subscription creation
+-   [x] PayU TEST payment
+-   [x] Subscription activation
+-   [x] Charity contribution
+-   [x] Add score
+-   [x] Edit score
+-   [x] Delete score
+-   [x] Latest-five score retention
+-   [x] Monthly draw participation
+-   [x] Draw completion
+-   [x] Winning number matching
+-   [x] Winner creation
+-   [x] Winner proof workflow
+-   [x] Admin winner approval
+-   [x] Winner payout status
+-   [x] Admin reports
+-   [x] Responsive layout
+-   [x] Production frontend deployment
+-   [x] Production backend deployment
+
+------------------------------------------------------------------------
+
+## 🚀 Local Development
+
+### 1. Clone the repository
+
+``` bash
+git clone -b digital-hero https://github.com/SHRUTI-GAJJAR/digital-heroes.git
+cd digital-heroes
+```
+
+### 2. Backend
+
+``` bash
 cd backend
 npm install
-npm start
 ```
 
-Backend:
+Create a `.env` file with the required backend configuration.
 
-```text
-http://localhost:5000
-```
+Then start the server:
 
-### Frontend
-
-In another terminal:
-
-```bash
-cd frontend
-npm install
+``` bash
 npm run dev
 ```
 
-Frontend:
+The backend runs on:
 
-```text
+``` text
+http://localhost:5000
+```
+
+### 3. Frontend
+
+Open another terminal:
+
+``` bash
+cd frontend
+npm install
+```
+
+Create a `.env` file:
+
+``` env
+VITE_API_URL=http://localhost:5000/api
+```
+
+Start the frontend:
+
+``` bash
+npm run dev
+```
+
+The Vite development server normally runs on:
+
+``` text
 http://localhost:5173
 ```
 
-## Testing
+------------------------------------------------------------------------
 
-Backend tests use Node.js's built-in test runner.
-
-```bash
-cd backend
-npm test
-```
-
-The automated tests cover:
-
-- PayU checkout hash generation
-- PayU salt exclusion
-- Response hash validation
-- Tampered response rejection
-- Payment amount verification
-- Payment status handling
-- Payment-gated subscription activation
-- Donation idempotency
-- Authentication middleware
-- Admin authorization
-- API route contracts
-
-## Frontend Build
-
-```bash
-cd frontend
-npm run build
-```
-
-The production build is generated in:
-
-```text
-frontend/dist/
-```
-
-## Payment Flow
-
-```text
-Member
-  ↓
-Select subscription
-  ↓
-Select charity
-  ↓
-Choose contribution %
-  ↓
-Enter phone number
-  ↓
-Create pending subscription
-  ↓
-Create pending payment
-  ↓
-PayU TEST checkout
-  ↓
-Validate payment response
-  ↓
-Verify transaction with PayU
-  ↓
-Activate subscription
-  ↓
-Create charity contribution
-```
-
-The application does not store card numbers, CVV, or UPI PIN.
-
-PayU callbacks require a publicly accessible HTTPS backend URL. `localhost` cannot receive external PayU callbacks.
-
-## Winner Verification Flow
-
-```text
-Draw completed
-  ↓
-Winner generated
-  ↓
-Winner views result
-  ↓
-Winner uploads proof
-  ↓
-Admin reviews proof
-  ↓
-Approved / Rejected
-  ↓
-Approved
-  ↓
-Paid
-```
-
-## Draw Lifecycle
-
-```text
-Draft
-  ↓
-Simulated
-  ↓
-Published
-  ↓
-Completed
-```
-
-A completed draw contains winning numbers, match results, prize pool information, winners, and prize distribution.
-
-## Application Routes
-
-### Public
-
-```text
-/
-/login
-/register
-/charities
-/charities/:id
-```
-
-### Member
-
-```text
-/dashboard
-/scores
-/subscription
-/donations
-/draws
-/draws/:id
-/winners
-/winners/:id
-```
-
-### Admin
-
-```text
-/admin
-/admin/users
-/admin/charities
-/admin/draws
-/admin/winners
-/admin/reports
-```
-
-## User Roles
-
-### Member
-
-Members can:
-- Manage their account
-- Subscribe
-- Select charities
-- Submit golf scores
-- View draws
-- View winnings
-- Submit winner proof
-- View donations
-
-### Admin
-
-Admins can:
-- Manage users
-- Manage charities
-- Manage draws
-- Manage winners
-- Review winner proof
-- View reports
-- Manage platform operations
-
-## Security
-
-The application uses:
-
-- bcrypt password hashing
-- JWT authentication
-- Role-based authorization
-- Server-side PayU hash generation
-- Server-side payment verification
-- Payment idempotency
-- Environment variable protection
-- Supabase service-role key kept server-side
-- PayU credentials kept server-side
-- Hosted payment checkout
-
-## Responsive UI
-
-The interface is designed for:
-
-- Desktop
-- Laptop
-- Tablet
-- Mobile
-
-The application includes responsive navigation, forms, dashboards, cards, tables, and admin screens.
-
-## UI / UX
-
-Digital Heroes uses a modern charity-first visual direction focused on:
-
-- Trust
-- Community
-- Charity
-- Rewards
-- Clear actions
-- Simple navigation
-- Accessible information hierarchy
-- Subtle motion and micro-interactions
-
-Lucide icons are used for interface elements.
-
-## Development Principles
-
-- Separation of frontend and backend concerns
-- REST API architecture
-- Reusable React components
-- Service-based backend logic
-- Protected API routes
-- Server-side payment processing
-- Environment-based configuration
-- Database-backed application state
-- Idempotent payment fulfillment
-- Clear error handling
-- Responsive design
-- Maintainable project structure
-
-## Deployment
+## 🌐 Production
 
 ### Frontend
 
-The frontend can be deployed to Vercel.
+**Vercel**
 
-Build command:
-
-```bash
-npm run build
-```
-
-Output directory:
-
-```text
-dist
-```
-
-Production frontend environment:
-
-```env
-VITE_API_URL=https://your-backend-domain/api
-```
+https://digital-heroes-ashy-five.vercel.app/
 
 ### Backend
 
-The backend requires a Node.js-compatible hosting environment with HTTPS.
+**Render**
 
-Configure all production environment variables on the hosting platform.
+https://digital-heroes-backend-wylf.onrender.com
 
-PayU callback URLs must point to the deployed backend:
+### Database
 
-```text
-https://your-backend-domain/api/payments/payu/success
-https://your-backend-domain/api/payments/payu/failure
-https://your-backend-domain/api/payments/payu/cancel
-https://your-backend-domain/api/payments/payu/webhook
+**Supabase**
+
+The production backend connects to the configured Supabase PostgreSQL
+database using server-side credentials.
+
+------------------------------------------------------------------------
+
+## 🧑‍💻 Demo Credentials
+
+For evaluation, use the test credentials supplied separately with the
+assignment submission.
+
+### Member
+
+``` text
+Email: <YOUR_MEMBER_EMAIL>
+Password: <YOUR_MEMBER_PASSWORD>
 ```
 
-## Current Status
+### Admin
 
-- [x] Authentication
-- [x] Member registration
-- [x] Member login
-- [x] JWT authentication
-- [x] Charity directory
-- [x] Charity management
-- [x] Subscription management
-- [x] Charity contribution tracking
-- [x] Golf score management
-- [x] Latest five score handling
-- [x] Monthly draw management
-- [x] Draw simulation
-- [x] Winner generation
-- [x] Winner proof submission
-- [x] Winner verification
-- [x] Donation tracking
-- [x] Admin dashboard
-- [x] User management
-- [x] Reports
-- [x] PayU TEST payment integration
-- [x] Payment verification
-- [x] Payment idempotency
-- [x] Responsive UI
-- [x] Automated backend tests
-- [x] Production frontend build
+``` text
+Email: <YOUR_ADMIN_EMAIL>
+Password: <YOUR_ADMIN_PASSWORD>
+```
 
-## Future Improvements
+> Replace the placeholders above with the credentials you provide to the
+> evaluator. Do not commit passwords or secrets to GitHub.
 
-- Automatic recurring subscription mandates
-- Production payment configuration
-- Email notifications
-- SMS notifications
-- Automated scheduled monthly draws
-- Automated subscription renewal
-- Advanced analytics
-- Payment reconciliation
-- Automated winner payouts
-- Expanded charity event features
+------------------------------------------------------------------------
 
-## GitHub
+## 📌 Important Demo Notes
 
-Repository:
+-   Payment is configured for **PayU TEST/Sandbox mode**.
+-   No real money should be used for evaluation.
+-   The monthly draw and winner lifecycle can be demonstrated from the
+    admin dashboard.
+-   Winner proof is intended for winner verification.
+-   Admin functionality requires an account with the admin role.
+-   Production secrets are stored in deployment environment variables
+    rather than the repository.
 
-https://github.com/SHRUTI-GAJJAR/digital-heroes
+------------------------------------------------------------------------
 
-## Important Notes
+## 🎨 Design Direction
 
-This project is currently configured for development/testing and PayU TEST mode.
+The UI follows a modern, clean, charity-first visual system:
 
-Before production deployment:
+-   Soft neutral backgrounds
+-   Deep teal primary branding
+-   Green charity accents
+-   Rounded cards
+-   Clear status badges
+-   Strong typography hierarchy
+-   Responsive layouts
+-   Lucide iconography
+-   Subtle motion and micro-interactions
+-   Prominent subscription and charity calls-to-action
 
-1. Configure production payment credentials.
-2. Configure production HTTPS callback URLs.
-3. Configure production Supabase settings.
-4. Review authentication and authorization.
-5. Configure production environment variables.
-6. Remove development-only setup functionality.
-7. Verify payment webhooks.
-8. Test the complete subscription and payment lifecycle.
-9. Review database security policies.
-10. Never commit secrets to GitHub.
+The goal is to make the platform feel like a modern impact-focused
+rewards product rather than a traditional golf website.
 
-## License
+------------------------------------------------------------------------
 
-This project was created as a technical assignment/project demonstration.
+## 📈 Future Improvements
+
+Potential future production enhancements include:
+
+-   Automated recurring subscription billing
+-   Full payment mandate/recurring-payment support
+-   Email notifications for subscription and winner events
+-   More advanced draw analytics
+-   Automated winner notifications
+-   Additional charity events and campaigns
+-   Expanded reporting and export tools
+-   More comprehensive automated test coverage
+
+------------------------------------------------------------------------
+
+## 👩‍💻 Author
+
+**Shruti Ujeniya**
+
+Full-Stack Web Developer
+
+Built with:
+
+**React • Node.js • Express.js • Supabase • PostgreSQL • PayU • Vercel •
+Render**
+
+------------------------------------------------------------------------
+
+## 📄 License
+
+This project was created as a technical assignment and demonstration
+project.
+
+Unless otherwise stated, the source code and project assets are intended
+for evaluation and demonstration purposes.
