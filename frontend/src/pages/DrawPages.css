@@ -88,29 +88,45 @@
 }
 
 /* Admin / winner review number balls */
+
 .admin-numbers {
   display: flex;
-  gap: 7px;
-  flex-wrap: wrap;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
 }
 
 .admin-numbers span {
-  display: grid;
-  place-items: center;
-  width: 31px;
-  height: 31px;
-  flex: 0 0 31px;
-  padding: 0;
-  margin: 0;
-  border-radius: 50%;
-  background: #00394a;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 800;
-  line-height: 1;
-  text-align: center;
-  box-sizing: border-box;
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px;
+  min-height: 36px;
+  max-width: 36px;
+  max-height: 36px;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  flex: 0 0 36px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  border: 0 !important;
+  border-radius: 50% !important;
+
+  background: #00394a !important;
+  color: #ffffff !important;
+
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  line-height: 36px !important;
+  text-align: center !important;
+
+  box-sizing: border-box !important;
+  overflow: hidden;
 }
 
 .draw-prize {
